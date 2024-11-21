@@ -1,0 +1,63 @@
+backend:
+      name: git-gateway
+      branch: main
+
+    media_folder: "static/img"
+    public_folder: "/img"
+
+    collections:
+      - name: "menu"
+        label: "Menu"
+        folder: "src/menu"
+        create: true
+        fields:
+          - { name: "title", label: "Title" }
+          - { name: "description", label: "Description" }
+          - { name: "price", label: "Price" }
+          - { name: "image", label: "Image", widget: "image" }
+
+      - name: "orders"
+        label: "Orders"
+        folder: "src/orders"
+        create: true
+        fields:
+          - { name: "id", label: "Order ID", widget: "uuid" }
+          - { name: "user", label: "User" }
+          - { name: "items", label: "Items" }
+          - { name: "total", label: "Total" }
+          - { name: "status", label: "Status", widget: "select", options: ["Pending", "Preparing", "Delivered", "Cancelled"] }
+          - { name: "createdAt", label: "Created At", widget: "datetime" }
+
+      - name: "users"
+        label: "Users"
+        folder: "src/users"
+        create: true
+        fields:
+          - { name: "id", label: "User ID", widget: "uuid" }
+          - { name: "name", label: "Name" }
+          - { name: "email", label: "Email" }
+          - { name: "orders", label: "Orders" }
+
+      - name: "revenue"
+        label: "Revenue"
+        folder: "src/revenue"
+        create: true
+        fields:
+          - { name: "month", label: "Month" }
+          - { name: "year", label: "Year" }
+          - { name: "totalRevenue", label: "Total Revenue" }
+
+      - name: "dashboard"
+        label: "Dashboard"
+        folder: "src/dashboard"
+        create: true
+        fields:
+          - { name: "totalOrders", label: "Total Orders" }
+          - { name: "totalUsers", label: "Total Users" }
+          - { name: "totalRevenue", label: "Total Revenue" }
+          - { name: "revenueByMonth", label: "Revenue by Month", widget: "list", fields:
+              [
+                { name: "month", label: "Month" },
+                { name: "revenue", label: "Revenue" }
+              ]
+            }
